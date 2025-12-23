@@ -27,7 +27,8 @@ def completion_command(shell: str) -> None:
 
     \b
     # Fish (add to ~/.config/fish/completions/youtube-transcript-tool.fish):
-    youtube-transcript-tool completion fish > ~/.config/fish/completions/youtube-transcript-tool.fish
+    youtube-transcript-tool completion fish > \
+        ~/.config/fish/completions/youtube-transcript-tool.fish
 
     \b
     File-based Installation (Recommended for better performance):
@@ -45,7 +46,8 @@ def completion_command(shell: str) -> None:
     \b
     # Fish (automatic loading)
     mkdir -p ~/.config/fish/completions
-    youtube-transcript-tool completion fish > ~/.config/fish/completions/youtube-transcript-tool.fish
+    youtube-transcript-tool completion fish > \
+        ~/.config/fish/completions/youtube-transcript-tool.fish
 
     \b
     Supported Shells:

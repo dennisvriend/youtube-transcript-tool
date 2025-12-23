@@ -2,23 +2,31 @@
 
 ## Goal
 
-A Python CLI tool
+A professional CLI tool for downloading, listing, and translating YouTube video transcripts with support for multiple output formats.
 
 ## What is youtube-transcript-tool?
 
-`youtube-transcript-tool` is a command-line utility built with modern Python tooling and best practices.
+`youtube-transcript-tool` is a command-line utility that downloads YouTube video transcripts and subtitles with support for:
+- **Multiple languages** - download transcripts in available languages
+- **Translation** - translate transcripts using YouTube's automatic translation
+- **Multiple formats** - text, JSON, SRT, WebVTT
+- **Listing** - see all available transcript languages for a video
+- **Multi-level verbosity** - progressive logging for debugging
+
+Built with modern Python tooling and best practices, featuring agent-friendly CLI help with inline examples.
 
 ## Technical Requirements
 
 ### Runtime
 
 - Python 3.14+
-- Installable globally with mise
+- Installable globally with mise or uv
 - Cross-platform (macOS, Linux, Windows)
 
 ### Dependencies
 
 - `click` - CLI framework
+- `youtube-transcript-api` - YouTube transcript downloading
 
 ### Development Dependencies
 
@@ -29,20 +37,54 @@ A Python CLI tool
 - `pip-audit` - Dependency vulnerability scanning
 - `gitleaks` - Secret detection (requires separate installation)
 
-## CLI Arguments
+## CLI Commands
 
 ```bash
-youtube-transcript-tool [OPTIONS]
+youtube-transcript-tool [OPTIONS] COMMAND [ARGS]...
 ```
 
-### Options
+### Main Commands
+
+1. **download** - Download YouTube video transcript
+   ```bash
+   youtube-transcript-tool download URL [--format FORMAT] [--language LANG]
+   ```
+   - Formats: text (default), json, srt, webvtt
+   - Languages: en, de, es, fr, it, pt, ja, zh, etc.
+
+2. **list** - List all available transcripts for a video
+   ```bash
+   youtube-transcript-tool list URL
+   ```
+   - Shows all available languages
+   - Indicates manual vs auto-generated
+   - Shows translatability
+
+3. **translate** - Translate transcript to target language
+   ```bash
+   youtube-transcript-tool translate URL --to LANG [--format FORMAT]
+   ```
+   - Uses YouTube's automatic translation
+   - Supports all output formats
+
+4. **formats** - List all supported output formats
+   ```bash
+   youtube-transcript-tool formats
+   ```
+
+5. **completion** - Generate shell completion scripts
+   ```bash
+   youtube-transcript-tool completion [bash|zsh|fish]
+   ```
+
+### Global Options
 
 - `-v, --verbose` - Enable verbose output (count flag: -v, -vv, -vvv)
   - `-v` (count=1): INFO level logging
   - `-vv` (count=2): DEBUG level logging
-  - `-vvv` (count=3+): TRACE level (includes library internals)
-- `--help` / `-h` - Show help message
+  - `-vvv` (count=3+): TRACE level (includes urllib3 HTTP logs)
 - `--version` - Show version
+- `--help` - Show help message
 
 ## Project Structure
 
@@ -50,7 +92,8 @@ youtube-transcript-tool [OPTIONS]
 youtube-transcript-tool/
 ├── youtube_transcript_tool/
 │   ├── __init__.py
-│   ├── cli.py            # Click CLI entry point (group with subcommands)
+│   ├── cli.py            # Click CLI entry point with all commands
+│   ├── transcript.py     # Core transcript download/translate functionality
 │   ├── completion.py     # Shell completion command
 │   ├── logging_config.py # Multi-level verbosity logging
 │   └── utils.py          # Utility functions

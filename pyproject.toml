@@ -5,6 +5,7 @@ description = "A Python CLI tool"
 requires-python = ">=3.14"
 dependencies = [
     "click>=8.1.7",
+    "youtube-transcript-api>=1.2.3",
 ]
 authors = [
     {name = "Dennis Vriend", email = "dvriend@ilionx.com"}
