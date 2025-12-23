@@ -1,0 +1,19 @@
+{
+    "name": "youtube-transcript-tool",
+    "owner": {
+        "name": "Dennis Vriend",
+        "email": "dvriend@ilionx.com",
+        "url": "https://github.com/dnvriend"
+    },
+    "metadata": {
+        "description": "Marketplace for youtube-transcript-tool CLI plugin - A Python CLI tool",
+        "version": "0.1.0"
+    },
+    "plugins": [
+        {
+            "name": "youtube-transcript-tool",
+            "source": "./plugins/youtube-transcript-tool",
+            "description": "A Python CLI tool"
+        }
+    ]
+}
